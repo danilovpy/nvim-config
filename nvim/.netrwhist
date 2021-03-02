@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =4
+let g:netrw_dirhist_4='/root/PycharmProjects/social-network/social-network/images'
+let g:netrw_dirhist_3='/root/PycharmProjects/social-network/social-network'
+let g:netrw_dirhist_2='/root/PycharmProjects/social-network/social-network/images'
+let g:netrw_dirhist_1='/root/PycharmProjects/social-network/social-network'
