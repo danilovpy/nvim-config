@@ -5,9 +5,12 @@ local wo = vim.wo
 wo.rnu = true
 wo.nu = true
 
-g.python3_host_prog = '/root/.pyenv/versions/py3nvim/bin/python'
-o.termguicolors = true
+g.python3_host_prog = '/home/sergey/.pyenv/versions/py3nvim/bin/python'
+
+
+wo.signcolumn="yes:1"
 o.syntax = 'on'
+o.termguicolors = true
 o.errorbells = false
 o.smartcase = true
 o.showmode = false
@@ -78,6 +81,10 @@ packer.startup(function()
   use 'nvim-lua/plenary.nvim'
   use 'nvim-lua/telescope.nvim'
   use 'jremmen/vim-ripgrep'
+  use 'windwp/nvim-autopairs'
+
+  use 'preservim/nerdtree'
+  use 'alvan/vim-closetag'
   -- these are optional themes but I hear good things about gloombuddy ;)
   -- colorbuddy allows us to run the gloombuddy theme
   use 'tjdevries/colorbuddy.nvim'
@@ -86,6 +93,16 @@ packer.startup(function()
   use {'prettier/vim-prettier', run = 'yarn install' }
   end
 )
+
+-- closetag setup 
+g.closetag_filenames = '*.html,*.xhtml,*.phtml, *.vue, *.jsx'
+g.closetag_xhtml_filenames = '*.xhtml,*.jsx, *.vue'
+g.closetag_filetypes = 'html,xhtml,phtml,jsx,vue'
+g.closetag_xhtml_filetypes = 'xhtml,jsx,vue'
+
+
+
+require('nvim-autopairs').setup()
 vim.g.colors_name = 'gloombuddy'
 
 local configs = require'nvim-treesitter.configs'
@@ -120,6 +137,7 @@ local default_config = {
 lspconfig.tsserver.setup(default_config)
 lspconfig.pyls.setup(default_config)
 lspconfig.sumneko_lua.setup(default_config)
+lspconfig.vuels.setup(default_config)
 
 
 -- key maps
@@ -138,10 +156,23 @@ key_mapper('n', 'K', ':lua vim.lsp.buf.hover()<CR>')
 key_mapper('n', '<c-k>', ':lua vim.lsp.buf.signature_help()<CR>')
 key_mapper('n', '<leader>af', ':lua vim.lsp.buf.code_action()<CR>')
 key_mapper('n', '<leader>rn', ':lua vim.lsp.buf.rename()<CR>')
-
+key_mapper('n', '<leader>1', '1gt')
+key_mapper('n', '<leader>2', '2gt')
+key_mapper('n', '<leader>3', '3gt')
+key_mapper('n', '<leader>4', '4gt')
+key_mapper('n', '<leader>5', '5gt')
+key_mapper('n', '<leader>6', '6gt')
+key_mapper('n', '<leader>7', '7gt')
+key_mapper('n', '<leader>8', '8gt')
+key_mapper('n', '<leader>9', '9gt')
+key_mapper('n', '<C-Left>', ':tabprevious<CR>')
+key_mapper('n', '<C-Right>', ':tabnext<CR>')
+key_mapper('n', '<leader><leader>', ':noh<CR>')
+key_mapper('n', '<F2>', ':NERDTreeToggle<CR>')
 
 --telescope mappers 
 key_mapper('n', '<C-p>', ':lua require"telescope.builtin".find_files()<CR>')
 key_mapper('n', '<leader>fs', ':lua require"telescope.builtin".live_grep()<CR>')
 key_mapper('n', '<leader>fh', ':lua require"telescope.builtin".help_tags()<CR>')
 key_mapper('n', '<leader>fb', ':lua require"telescope.builtin".buffers()<CR>')
+
