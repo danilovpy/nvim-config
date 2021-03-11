@@ -8,7 +8,6 @@ wo.nu = true
 g.python3_host_prog = '/home/sergey/.pyenv/versions/py3nvim/bin/python'
 
 
-wo.signcolumn="yes:1"
 o.syntax = 'on'
 o.termguicolors = true
 o.errorbells = false
@@ -93,6 +92,9 @@ packer.startup(function()
   use {'prettier/vim-prettier', run = 'yarn install' }
   end
 )
+require'lspconfig'.gopls.setup{}
+
+
 
 -- closetag setup 
 g.closetag_filenames = '*.html,*.xhtml,*.phtml, *.vue, *.jsx'
